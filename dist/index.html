@@ -4,11 +4,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../src/styles.css">
+    <title>What to do?</title>
+    <link rel="stylesheet" href="./styles.css">
     <script src="../src/index.js" defer></script>
 </head>
 <body>
-    
+    <header>
+        <h2>What to do?</h2>
+        <h3>Projects</h3>
+        <ul class="nav">
+            <li>Sample Project</li>
+        </ul>
+        <button class="Add">Add Project</button>
+    </header>
+    <div class="body">
+        <div class="project">
+            <div class="project-text">
+                Sample Project
+            </div>
+            <div class="project-description">
+                Sample Project Description
+            </div>
+            <button class="delete">Delete</button>
+        </div>
+        <ul class="tasks">
+            <li class="task">
+                <h4 class="task-title">Sample Task</h4>
+                <h5 class="task-description">Sample Task Description</h5>
+                <h5 class="task-due-date">Sample Task Due Date</h5>
+                <h5 class="task-priority">Sample Task Priority</h5>
+                <button class="complete">Complete</button>
+                <button class="delete">Delete</button>
+            </li>
+        </ul>
+        <button class="add">Add Task</button>
+    </div>
 </body>
 </html>
