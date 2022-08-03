@@ -2,4 +2,59 @@
     font-family: "tomato";
     src: url("./fonts/tomatoes.ttf");
 }
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
+
+h2,
+h3,
+h4,
+h5 {
+    padding: 0;
+}
+
+ul,
+li {
+    padding: 0;
+    list-style-type: none;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    font-family: 'Barlow', sans-serif;
+    display: grid;
+    grid-template-columns: minmax(300px, 1fr) minmax(500px, 3fr);
+}
+
+@media only screen and (max-width: 600px) {
+    body {
+        grid-template-rows: 1fr 3fr;
+    }
+    header {
+        grid-row: 1 / 1;
+    }
+    .body {
+        grid-row: 2 / 4;
+    }
+}
+
+header {
+    background-color: #dde5b6;
+    padding: 10px 30px;
+}
+
+h2 {
+    font-family: 'tomato';
+}
+
+h3 {
+    padding-bottom: 5px;
+    border-bottom: 2px solid rgb(92, 88, 88);
+}
+
+.body {
+    background-color: #f0ead2;
+    padding: 10px 30px;
+}
