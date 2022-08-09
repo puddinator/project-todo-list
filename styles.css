@@ -28,15 +28,17 @@ body {
     grid-template-columns: minmax(300px, 1fr) minmax(500px, 3fr);
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
     body {
         grid-template-rows: 1fr 3fr;
     }
     header {
         grid-row: 1 / 1;
+        grid-column: 1 / 3;
     }
     .body {
         grid-row: 2 / 4;
+        grid-column: 1 / 3;
     }
 }
 
@@ -54,7 +56,152 @@ h3 {
     border-bottom: 2px solid rgb(92, 88, 88);
 }
 
+.add,
+.delete,
+.complete {
+    border-width: 0px;
+    background-color: darkolivegreen;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.delete {
+    background-color: rgb(112, 97, 11);
+}
+
+button:hover {
+    cursor: pointer;
+}
+
 .body {
     background-color: #f0ead2;
-    padding: 10px 30px;
+    padding: 45px 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.project {
+    display: grid;
+    grid-template: 3fr 2fr / 9fr 1fr;
+}
+
+.projects li:hover {
+    color: darkolivegreen;
+    cursor: pointer;
+}
+
+.project-name {
+    grid-area: 1 / 1 / 2 / 2;
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.project-description {
+    grid-area: 2 / 1 / 3 / 2;
+    margin-top: 3px;
+
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding-bottom: 5px;
+    border-bottom: 2px solid rgb(92, 88, 88);
+}
+
+.delete {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.task {
+    display: grid;
+    grid-template-columns: 7fr 2fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0px;
+    align-items: center;
+    border: 1px dashed black;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.task > * {
+    margin: 0;
+} 
+
+.task-name {
+    grid-area: 1 / 1 / 2 / 4;
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+
+.task-description {
+    grid-area: 2 / 1 / 3 / 2;
+    font-weight: 300;
+}
+
+.task-due-date {
+    grid-area: 2 / 2 / 3 / 3;
+    font-weight: 300;
+}
+
+.complete {
+    grid-area: 2 / 3 / 3 / 4;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.task .delete {
+    grid-area: 2 / 4 / 3 / 5;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.add {
+    margin-left: auto;
+}
+
+.overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+}
+
+.overlay h3 {
+    border-bottom: 0px;
+    margin: 0;
+}
+
+.overlay input,
+.overlay textarea {
+    margin: 0px 0px 10px 0px;
+}
+
+.overlay form {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 50px 100px;
+    border-radius: 5px;
+}
+
+.overlay form h3 {
+    padding: 0;
+}
+
+.popup input {
+    margin-bottom: 10px;
 }
