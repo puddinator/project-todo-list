@@ -44,10 +44,19 @@ export default class UI {
     const projectNav = document.querySelector('.projects');
     projectNav.innerHTML = ``;
 
-    myProjects.forEach(element => {
+    myProjects.forEach((element, index) => {
       let newProjectNav = document.createElement('li');
+      if (index == 0) {
+        newProjectNav.classList.add('active');
+      }
+
       newProjectNav.textContent = element.name;
       newProjectNav.addEventListener('click', () => {
+        document.querySelectorAll('.active').forEach(element => {
+          element.classList.remove('active');
+        });
+
+        newProjectNav.classList.add('active');
         Storage.currentProject = element;
         Project.showProject();
       });

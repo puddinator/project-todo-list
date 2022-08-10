@@ -65,6 +65,12 @@ h3 {
     cursor: pointer;
 }
 
+.projects li.active {
+    color: darkred;
+    font-size: 1.2rem;
+    cursor: default;
+}
+
 .add,
 .delete,
 .complete {
