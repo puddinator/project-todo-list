@@ -1,1 +1,126 @@
-(()=>{const e=document.getElementById("add-project"),t=document.getElementById("overlay-project"),n=document.getElementById("overlay-add-project"),c=document.getElementById("overlay-cancel-project"),d=document.getElementById("add-task"),o=document.getElementById("overlay-task"),r=document.getElementById("overlay-add-task"),s=document.getElementById("overlay-cancel-task"),a=(document.getElementById("delete-project"),document.getElementById("delete-task"),document.querySelector(".complete"),document.querySelector(".projects"));let l=[];function i(e,t){this.name=e,this.description=t,this.tasks=[]}function m(e,t,n){this.name=e,this.description=t,this.dueDate=n}function u(e){const t=document.querySelector(".project-name"),n=document.querySelector(".project-description"),c=document.querySelector(".tasks");t.textContent=e.name,n.textContent=e.description,c.innerHTML="",e.tasks.forEach((e=>{c.appendChild(function(e){const t=document.createElement("li");t.classList.add("task");const n=document.createElement("h4");n.classList.add("task-name"),n.textContent=e.name;const c=document.createElement("h5");c.classList.add("task-description"),c.textContent=e.description;const d=document.createElement("h5");d.classList.add("task-due-date"),d.textContent=e.dueDate;const o=document.createElement("button");o.classList.add("complete"),o.textContent="complete",o.addEventListener("click",(()=>{currentProject.tasks.splice(currentProject.tasks.indexOf(e),1),u(currentProject)}));const r=document.createElement("button");return r.classList.add("delete"),r.setAttribute("id","delete-task"),r.textContent="delete",r.addEventListener("click",(()=>{currentProject.tasks.splice(currentProject.tasks.indexOf(e),1),u(currentProject)})),t.appendChild(n),t.appendChild(c),t.appendChild(d),t.appendChild(o),t.appendChild(r),t}(e))}))}currentProject=new i("",""),e.addEventListener("click",(()=>{t.style.display="flex"})),n.addEventListener("click",(function(){let e=document.getElementById("form-project"),n=new FormData(e);const c=new i(n.get("name"),n.get("description"));currentProject=c,l.push(c),t.style.display="none",newProjectNav=document.createElement("li"),newProjectNav.textContent=c.name,newProjectNav.addEventListener("click",(()=>{currentProject=c,u(c)})),a.appendChild(newProjectNav),currentProject=c,u(c)})),c.addEventListener("click",(()=>{t.style.display="none"})),d.addEventListener("click",(()=>{o.style.display="flex"})),r.addEventListener("click",(function(){let e=document.getElementById("form-task"),t=new FormData(e);const n=new m(t.get("name"),t.get("description"),t.get("due-date"));currentProject.tasks.push(n),o.style.display="none",u(currentProject)})),s.addEventListener("click",(()=>{o.style.display="none"}))})();
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_storage_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/storage.js */ \"./src/modules/storage.js\");\n\n\ndocument.addEventListener('DOMContentLoaded', _modules_storage_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"].initiate)\n\n//# sourceURL=webpack://project-todo-list/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/modules/Project.js":
+/*!********************************!*\
+  !*** ./src/modules/Project.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Project)\n/* harmony export */ });\n/* harmony import */ var _storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./storage */ \"./src/modules/storage.js\");\n\n\nclass Project {\n  constructor(name, description) {\n    this.name = name;\n    this.description = description;\n    this.tasks = [];\n  }\n\n  static showProject() {\n    const projectName = document.querySelector('.project-name');\n    const projectDescription = document.querySelector('.project-description');\n    const projectTasks = document.querySelector('.tasks');\n\n    projectName.textContent = _storage__WEBPACK_IMPORTED_MODULE_0__[\"default\"].currentProject.name;\n    projectDescription.textContent = _storage__WEBPACK_IMPORTED_MODULE_0__[\"default\"].currentProject.description;\n\n    const deleteProject = document.getElementById('delete-project');\n    const cloneDeleteProject = deleteProject.cloneNode(true);\n    deleteProject.parentNode.replaceChild(cloneDeleteProject, deleteProject);\n    cloneDeleteProject.addEventListener('click', () => {\n      _storage__WEBPACK_IMPORTED_MODULE_0__[\"default\"].removeProjectFromDatabase();\n    });\n\n    projectTasks.innerHTML = ``;\n    _storage__WEBPACK_IMPORTED_MODULE_0__[\"default\"].currentProject.tasks.forEach(element => {\n      projectTasks.appendChild(showProjectTask(element));\n    });\n  }\n}\n\nfunction showProjectTask(element) {\n  const projectTask = document.createElement('li');\n  projectTask.classList.add('task');\n\n  const name = document.createElement(\"h4\");\n  name.classList.add('task-name');\n  name.textContent = element.name;\n\n  const description = document.createElement(\"h5\");\n  description.classList.add('task-description');\n  description.textContent = element.description;\n\n  const dueDate = document.createElement(\"h5\");\n  dueDate.classList.add('task-due-date');\n  dueDate.textContent = element.dueDate;\n\n  const completeButton = document.createElement(\"button\");\n  completeButton.classList.add('complete');\n  completeButton.textContent = 'Complete';\n  completeButton.addEventListener('click', () => {\n    _storage__WEBPACK_IMPORTED_MODULE_0__[\"default\"].currentProject.tasks.splice(_storage__WEBPACK_IMPORTED_MODULE_0__[\"default\"].currentProject.tasks.indexOf(element), 1);\n    Project.showProject(_storage__WEBPACK_IMPORTED_MODULE_0__[\"default\"].currentProject);\n  });\n\n  const deleteButton = document.createElement(\"button\");\n  deleteButton.classList.add('delete');\n  deleteButton.setAttribute('id', 'delete-task');\n  deleteButton.textContent = 'Delete';\n  deleteButton.addEventListener('click', () => {\n    _storage__WEBPACK_IMPORTED_MODULE_0__[\"default\"].currentProject.tasks.splice(_storage__WEBPACK_IMPORTED_MODULE_0__[\"default\"].currentProject.tasks.indexOf(element), 1);\n    Project.showProject(_storage__WEBPACK_IMPORTED_MODULE_0__[\"default\"].currentProject);\n  });\n\n  projectTask.appendChild(name);\n  projectTask.appendChild(description);\n  projectTask.appendChild(dueDate);\n  projectTask.appendChild(completeButton);\n  projectTask.appendChild(deleteButton);\n\n  return projectTask;\n}\n\n//# sourceURL=webpack://project-todo-list/./src/modules/Project.js?");
+
+/***/ }),
+
+/***/ "./src/modules/Task.js":
+/*!*****************************!*\
+  !*** ./src/modules/Task.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Task)\n/* harmony export */ });\nclass Task {\n  constructor(name, description, dueDate) {\n    this.name = name;\n    this.description = description;\n    this.dueDate = dueDate;\n  }\n}\n\n//# sourceURL=webpack://project-todo-list/./src/modules/Task.js?");
+
+/***/ }),
+
+/***/ "./src/modules/storage.js":
+/*!********************************!*\
+  !*** ./src/modules/storage.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Storage)\n/* harmony export */ });\n/* harmony import */ var _Project_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Project.js */ \"./src/modules/Project.js\");\n/* harmony import */ var _Task_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Task.js */ \"./src/modules/Task.js\");\n/* harmony import */ var _ui_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ui.js */ \"./src/modules/ui.js\");\n\n\n\n\nclass Storage {\n  static myProjects = [];\n  static currentProject = new _Project_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]('', '');\n\n  static initiate() {\n    _ui_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"].projectOverlay();\n    _ui_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"].taskOverlay();\n  }\n\n  static addProjectToDatabase() {\n    let formProject = document.getElementById(\"form-project\");\n    let fd = new FormData(formProject);\n    \n    const newProject = new _Project_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"](fd.get('name'), fd.get('description'));\n    this.myProjects.push(newProject);\n    this.currentProject = newProject;\n    _ui_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"].showProjectList(this.myProjects);\n    _Project_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"].showProject(this.currentProject);\n  }\n  \n  static removeProjectFromDatabase() {\n    this.myProjects.splice(this.myProjects.indexOf(this.currentProject), 1);\n    this.currentProject = this.myProjects[0];\n    _ui_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"].showProjectList(this.myProjects);\n    _Project_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"].showProject(this.currentProject);\n  }\n\n  static addTaskToDatabase() {\n    let formProject = document.getElementById(\"form-task\");\n    let fd = new FormData(formProject);\n  \n    const newTask = new _Task_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"](fd.get('name'), fd.get('description'), fd.get('due-date'));\n    this.currentProject.tasks.push(newTask);\n  \n    _Project_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"].showProject(this.currentProject);\n  }\n}\n\n//# sourceURL=webpack://project-todo-list/./src/modules/storage.js?");
+
+/***/ }),
+
+/***/ "./src/modules/ui.js":
+/*!***************************!*\
+  !*** ./src/modules/ui.js ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ UI)\n/* harmony export */ });\n/* harmony import */ var _storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./storage */ \"./src/modules/storage.js\");\n/* harmony import */ var _Project_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Project.js */ \"./src/modules/Project.js\");\n\n\n\nclass UI {\n  static projectOverlay() {\n    const addProject = document.getElementById('add-project');\n    const overlayProject = document.getElementById('overlay-project');\n    const overlayAddProject = document.getElementById('overlay-add-project');\n    const overlayCancelProject = document.getElementById('overlay-cancel-project');\n\n    addProject.addEventListener('click', () => {\n      overlayProject.style.display = 'flex';\n      clearFormData();\n    });\n    overlayAddProject.addEventListener('click', () => {\n      overlayProject.style.display = 'none';\n      _storage__WEBPACK_IMPORTED_MODULE_0__[\"default\"].addProjectToDatabase();\n    });\n    overlayCancelProject.addEventListener('click', () => {\n      overlayProject.style.display = 'none';\n    });\n  }\n\n  static taskOverlay() {\n    const addTask = document.getElementById('add-task');\n    const overlayTask = document.getElementById('overlay-task');\n    const overlayAddTask = document.getElementById('overlay-add-task');\n    const overlayCancelTask = document.getElementById('overlay-cancel-task');\n\n    addTask.addEventListener('click', () => {\n      overlayTask.style.display = 'flex';\n      clearFormData();\n    });\n    overlayAddTask.addEventListener('click', () => {\n      overlayTask.style.display = 'none';\n      _storage__WEBPACK_IMPORTED_MODULE_0__[\"default\"].addTaskToDatabase();\n    });\n    overlayCancelTask.addEventListener('click', () => {\n      overlayTask.style.display = 'none';\n    });\n  }\n\n  static showProjectList(myProjects) {\n    const projectNav = document.querySelector('.projects');\n    projectNav.innerHTML = ``;\n\n    myProjects.forEach(element => {\n      let newProjectNav = document.createElement('li');\n      newProjectNav.textContent = element.name;\n      newProjectNav.addEventListener('click', () => {\n        _storage__WEBPACK_IMPORTED_MODULE_0__[\"default\"].currentProject = element;\n        _Project_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"].showProject();\n      });\n      projectNav.appendChild(newProjectNav);\n    });\n  }\n}\n\nfunction clearFormData() {\n  document.getElementById(\"form-task\").reset();\n  document.getElementById(\"form-project\").reset();\n}\n\n//# sourceURL=webpack://project-todo-list/./src/modules/ui.js?");
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/index.js");
+/******/ 	
+/******/ })()
+;

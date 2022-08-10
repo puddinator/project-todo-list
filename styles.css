@@ -56,6 +56,15 @@ h3 {
     border-bottom: 2px solid rgb(92, 88, 88);
 }
 
+.projects li{
+    padding-bottom: 5px;
+}
+
+.projects li:hover {
+    color: darkolivegreen;
+    cursor: pointer;
+}
+
 .add,
 .delete,
 .complete {
@@ -84,11 +93,6 @@ button:hover {
 .project {
     display: grid;
     grid-template: 3fr 2fr / 9fr 1fr;
-}
-
-.projects li:hover {
-    color: darkolivegreen;
-    cursor: pointer;
 }
 
 .project-name {
